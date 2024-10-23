@@ -1,0 +1,714 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+		<script src="https://unpkg.com/unlazy@0.11.3/dist/unlazy.with-hashing.iife.js" defer init></script>
+		<script type="text/javascript">
+			window.tailwind.config = {
+				darkMode: ['class'],
+				theme: {
+					extend: {
+						colors: {
+							border: 'hsl(var(--border))',
+							input: 'hsl(var(--input))',
+							ring: 'hsl(var(--ring))',
+							background: 'hsl(var(--background))',
+							foreground: 'hsl(var(--foreground))',
+							primary: {
+								DEFAULT: 'hsl(var(--primary))',
+								foreground: 'hsl(var(--primary-foreground))'
+							},
+							secondary: {
+								DEFAULT: 'hsl(var(--secondary))',
+								foreground: 'hsl(var(--secondary-foreground))'
+							},
+							destructive: {
+								DEFAULT: 'hsl(var(--destructive))',
+								foreground: 'hsl(var(--destructive-foreground))'
+							},
+							muted: {
+								DEFAULT: 'hsl(var(--muted))',
+								foreground: 'hsl(var(--muted-foreground))'
+							},
+							accent: {
+								DEFAULT: 'hsl(var(--accent))',
+								foreground: 'hsl(var(--accent-foreground))'
+							},
+							popover: {
+								DEFAULT: 'hsl(var(--popover))',
+								foreground: 'hsl(var(--popover-foreground))'
+							},
+							card: {
+								DEFAULT: 'hsl(var(--card))',
+								foreground: 'hsl(var(--card-foreground))'
+							},
+						},
+					}
+				}
+			}
+		</script>
+		<style type="text/tailwindcss">
+			@layer base {
+				:root {
+					--background: 0 0% 100%;
+--foreground: 240 10% 3.9%;
+--card: 0 0% 100%;
+--card-foreground: 240 10% 3.9%;
+--popover: 0 0% 100%;
+--popover-foreground: 240 10% 3.9%;
+--primary: 240 5.9% 10%;
+--primary-foreground: 0 0% 98%;
+--secondary: 240 4.8% 95.9%;
+--secondary-foreground: 240 5.9% 10%;
+--muted: 240 4.8% 95.9%;
+--muted-foreground: 240 3.8% 46.1%;
+--accent: 240 4.8% 95.9%;
+--accent-foreground: 240 5.9% 10%;
+--destructive: 0 84.2% 60.2%;
+--destructive-foreground: 0 0% 98%;
+--border: 240 5.9% 90%;
+--input: 240 5.9% 90%;
+--ring: 240 5.9% 10%;
+--radius: 0.5rem;
+				}
+				.dark {
+					--background: 240 10% 3.9%;
+--foreground: 0 0% 98%;
+--card: 240 10% 3.9%;
+--card-foreground: 0 0% 98%;
+--popover: 240 10% 3.9%;
+--popover-foreground: 0 0% 98%;
+--primary: 0 0% 98%;
+--primary-foreground: 240 5.9% 10%;
+--secondary: 240 3.7% 15.9%;
+--secondary-foreground: 0 0% 98%;
+--muted: 240 3.7% 15.9%;
+--muted-foreground: 240 5% 64.9%;
+--accent: 240 3.7% 15.9%;
+--accent-foreground: 0 0% 98%;
+--destructive: 0 62.8% 30.6%;
+--destructive-foreground: 0 0% 98%;
+--border: 240 3.7% 15.9%;
+--input: 240 3.7% 15.9%;
+--ring: 240 4.9% 83.9%;
+				}
+			}
+		</style>
+    <script>
+     
+
+
+// function fun(){
+//   var buttons=document.getElementById("buttos");
+//  var inputsmail=document.getElementById('inputsmail').value; 
+// console.log(inputsmail);
+// alert("Submited " + inputsmail);
+
+// }
+
+
+const form = document.getElementById('form');
+const result = document.getElementById('result');
+
+form.addEventListener('submit', function(e) {
+  e.preventDefault();
+  const formData = new FormData(form);
+  const object = Object.fromEntries(formData);
+  const json = JSON.stringify(object);
+  result.innerHTML = "Please wait..."
+
+    fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: json
+        })
+        .then(async (response) => {
+            let json = await response.json();
+            if (response.status == 200) {
+                result.innerHTML = "Form submitted successfully";
+            } else {
+                console.log(response);
+                result.innerHTML = json.message;
+            }
+        })
+        .catch(error => {
+            console.log(error);
+            result.innerHTML = "Something went wrong!";
+        })
+        .then(function() {
+            form.reset();
+            setTimeout(() => {
+                result.style.display = "none";
+            }, 3000);
+        });
+});
+    </script>
+        <style>
+            #background{
+                background-color:#030E24;
+            }
+            
+            #mycolor{
+                color: aliceblue;
+            }
+            #pargraf{
+                color: white;
+            }
+            #logo{
+            color: rgb(32, 195, 201); ;
+            }
+            #button1{
+                background-color: rgb(32, 195, 201);
+                color:black;
+            }
+            #button1:hover{
+                color:rgb(32, 195, 201);
+                background-color:#030E24;
+                border: solid 1px rgb(32, 195, 201) ;
+            }
+            #button2{
+                color:rgb(32, 195, 201);
+                background-color: rgb(17, 17, 48);
+                border: solid 1px rgb(32, 195, 201) ;
+
+            }
+            #button2:hover{
+                background-color: rgb(32, 195, 201);
+                color:black; 
+            }
+            #boxes{
+                background-color:rgb(17, 17, 48) ;
+            }
+            #colorbox{
+                color: rgb(32, 195, 201);
+            }
+            #boxpar{
+                color: white;
+            }
+            #larnbtn{
+                background-color: rgb(32, 195, 201);
+                color:black;
+            }
+            #homebtn{
+                color: rgb(32, 195, 201);
+            }
+            #homebtn:hover{
+                color:rgb(253, 253, 253);
+            }
+            #serchbr{
+                border: solid 1px rgb(32, 195, 201);
+                background-color: rgb(39, 43, 75);
+                font-size: 20px;
+                border-radius:30px ;
+                color: white;
+            }
+           ::placeholder{
+            padding-left: 15%;
+          
+            
+           }
+           #btn{
+            background-color: rgb(32, 195, 201);
+            color:black;
+           }
+            #mybtn{
+              background-color: rgb(32, 195, 201);
+              color:black;
+              width:15%;
+            }
+            #imgs{
+              width: auto;
+              height: auto;
+            }
+            #CustomerFeedback{
+              margin-top:5% ;
+              background-color:#030E24;
+             color: white;
+            }
+            #our{
+              color: white;
+            }
+            #teem{
+              color:white;
+            }
+            #imghov3:hover{
+              padding: 90px;
+              background-image: url(p1.png);
+              transition:ease-in-out 1s;
+            } 
+            #imghov2:hover{
+              padding: 70px;
+              background-image: url(p2.png);
+              transition:ease-in-out 1s;
+            }
+            #imghov4:hover{
+              padding: 70px;
+              background-image: url(p4.png);
+              transition:ease-in-out 1s;
+            } 
+             /* #imghov{
+              padding: 70px;
+             } */
+
+             #imghov1{
+              width: 80px;
+              height: 80px;
+             }
+             #imghov2{
+              width: 110px;
+              height: 110px;
+             }
+             #imghov3{
+              width: 160px;
+              height: 160px;
+             }
+             #imghov4{
+              width: 110px;
+              height: 110px;
+             }
+             #imghov5{
+              width: 80px;
+              height: 80px;
+             } 
+          #ceoheadingtext{
+            font-size: 30px;
+            font-weight: 700;
+            text-align: center;
+          }
+          #simpletext{
+            text-align: center;
+            
+          }
+          .main{
+          /* border: solid 2px red; */
+          flex-wrap: wrap;
+          display:flex;
+        
+          }
+          .ceobox{
+            width: 30%;
+            /* border: solid 2px rgb(38, 0, 255); */
+            margin-top: 10%;
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 8%;
+          }
+          .sidebox{
+         /* border: solid 1px black; */
+         
+         width: 70%;
+         margin-left: 30%;
+         margin-top:-35%;
+         display: flex;
+         justify-content: space-evenly;
+         flex-wrap: wrap;
+        
+          }
+         .sidebox2{
+      width: 100%;
+          /* border: solid 1px green; */
+          /* margin-left: 30%; */
+          padding-top: -20%;
+          display: flex;
+          justify-content:space-evenly;
+          flex-wrap: wrap;
+         }
+         .boxholder{
+          /* border: solid 2px red; */
+          display: flex;
+          flex-wrap:wrap;
+          justify-content: space-evenly;
+         }
+          .boxholder2{
+          /* border: solid 2px red; */
+          display: flex;
+          flex-wrap:wrap;
+          justify-content:space-evenly;
+         }
+         #pblack{
+          color: black;
+         }
+         #maleimput{
+          width: 500px;
+          height: 70px;
+         }
+.cpniconbox{
+  /* border: solid 1px red; */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin-left:30%;
+  margin-top: -2%;
+  font-weight: 400;
+  font-size: 20px;
+}
+ul li{
+  list-style: none;
+  color: white;
+}
+#texts{
+  color: white;
+}
+#footer{
+background-color:#030E24;
+ 
+}
+#texthd{
+  color: rgb(32, 195, 201);
+}
+#prgf{
+  color:white;
+}
+#boldpgrf{
+font-size: 15px;
+color: white;
+font-weight: 500;
+}
+#blackpgf{
+  color: black;
+}
+#inputsmail{
+  width: 500px;
+  height: 70px;
+}
+#navbr{
+  /* border: solid 1px red; */
+  display: flex;
+  justify-content: space-evenly;
+  font-weight: 600;
+}
+#callsection{
+  /* border:solid 1px red; */
+  display: flex;
+  justify-content:space-evenly;
+  flex-wrap: nowrap;
+}
+#c1{
+  display: flex;
+  justify-content: space-evenly;
+}
+#textss{
+  padding-left: 10px;
+  color: white;
+}
+html{
+  scroll-behavior:smooth;
+ 
+}
+
+
+            </style>
+  </head>
+  <body>
+    <section id="header">
+    <div id="background" class="bg-background text-foreground p-8">
+        <header class="flex justify-between items-center">
+          <div class="text-lg font-bold" id="logo">LOGO</div>
+          <div id="navbr">
+          <nav>
+            <ul class="flex space-x-4">
+              <li><a href="#header" id="homebtn" class="text-muted hover:text-muted-foreground">Home</a></li>
+              <li><a href="#about us" id="homebtn" class="text-muted hover:text-muted-foreground">About Us</a></li>
+              <li><a href="#CustomerFeedback" id="homebtn" class="text-muted hover:text-muted-foreground">Services</a></li>
+            </ul>
+          </nav>
+          </div>
+          <div>
+            <input id="serchbr" type="text" placeholder="Search" class="border border-border rounded p-2" />
+          </div>
+        </header>
+      
+        <div id="mycolor" class="mt-10 flex">
+          <div class="flex-1">
+            <h1 class="text-3xl font-semibold">
+              Cloud Engineers<br />
+              Enterprises
+            </h1>
+            <br>
+            <p id="pargraf" class="mt-4 text-muted-foreground">
+              Cloud Engineers Enterprises specializes in providing cutting<br>-edge cloud solutions tailored to meet the needs of businesses.<br> With expertise in cloud architecture, infrastructure<br>management, and
+              seamless migration, we empower <br>organizations to enhance scalability, security, and<br> performance.
+            </p>
+            <br>
+            <div class="mt-6 space-x-4">
+              <a href="#" id="button1" class="bg-primary text-primary-foreground px-4 py-2 rounded hover:bg-primary/80">Learn More</a>
+              <a href="#" id="button2" class="bg-secondary text-secondary-foreground px-4 py-2 rounded hover:bg-secondary/80">Get Started</a>
+            </div>
+          </div>
+          <div class="flex-1">
+            <img aria-hidden="true" alt="Cloud services illustration" src="baner.png" class="w-full h-auto" />
+          </div>
+        </div>
+      </div>
+      </section>
+    <section id="Our Services" class="py-16 bg-background">
+  <div class="text-center mb-12">
+    <h2 class="text-3xl font-bold text-primary">Our Services</h2>
+    <p id="blackpgf" class="text-muted-foreground mt-4">
+      Navigate the World of Finance with Confidence and Convenience<br><br />
+      Seamless Solution for Modern Money Management
+    </p>
+  </div>
+  <div  class="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+    <div id="boxes" class="bg-card p-6 rounded-lg shadow-lg">
+      <h3 id="colorbox" class="text-2xl font-semibold text-primary">01<br></br> Empowerment</h3>
+      <p id="boxpar" class="text-muted-foreground mt-2">
+        In our digital ecosystem, we empower users with tools for financial autonomy and decision-making, fostering confidence and independence in managing their finances.
+      </p>
+    </div>
+    <div id="boxes" class="bg-card p-6 rounded-lg shadow-lg">
+      <h3 id="colorbox" class="text-2xl font-semibold text-primary">02<br></br> Personalized</h3>
+      <p id="boxpar" class="text-muted-foreground mt-2">
+        Our digital banking platform offers personalized experiences tailored to individual needs, preferences, and financial goals, ensuring a unique and relevant journey for each user.
+      </p>
+    </div>
+    <div id="boxes" class="bg-card p-6 rounded-lg shadow-lg">
+      <h3 id="colorbox" class="text-2xl font-semibold text-primary">03<br></br>Privacy & Security</h3>
+      <p id="boxpar" class="text-muted-foreground mt-2">
+        Your top priority is safeguarding your data. Through cutting-edge encryption and security measures, we ensure privacy and financial information confidentiality.
+      </p>
+    </div>
+    <div id="boxes" class="bg-card p-6 rounded-lg shadow-lg">
+      <h3 id="colorbox" class="text-2xl font-semibold text-primary">04<br></br> Customer Support</h3>
+      <p id="boxpar" class="text-muted-foreground mt-2">
+        Our dedicated support team is available around the clock to assist you with any queries or concerns, providing prompt and reliable assistance whenever you need it.
+      </p>
+    </div>
+  </div>
+  <div class="mt-8 flex justify-center">
+    <button class="bg-secondary text-secondary-foreground p-2 rounded-full hover:bg-secondary/80">
+      <span>&lt;</span>
+    </button>
+    <button class="bg-secondary text-secondary-foreground p-2 rounded-full hover:bg-secondary/80 ml-2">
+      <span>&gt;</span>
+    </button>
+  </div>
+</section>
+<section id="about us">
+    <div class="max-w-4xl mx-auto p-6">
+        <h2 class="text-4xl font-bold text-center mb-4">About Us</h2>
+        <p id="pcolor" class="text-lg text-center mb-8">Navigate the World of Finance with Confidence and Convenience Seamless Solution for Modern Money Management</p>
+      
+        <div class="flex flex-col md:flex-row items-center">
+          <div class="md:w-1/2 mb-6 md:mb-0">
+            <img aria-hidden="true" alt="Office interior with large windows" src="box1.png" class="w-full h-auto rounded-lg shadow-lg" />
+          </div>
+          <div class="md:w-1/2 md:pl-6">
+            <h3 class="text-2xl font-semibold mb-2">Our Mission is Helping Millions of Organization Grow Better</h3>
+            <p  class="text-lg mb-4">Navigate the World of Finance with Confidence and Convenience Seamless Solution for Modern Money Management</p>
+            <a href="#" id="larnbtn" class="bg-secondary text-secondary-foreground hover:bg-secondary/80 py-2 px-4 rounded-lg">Learn More</a>
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-col md:flex-row items-center p-6 bg-card rounded-lg shadow-lg">
+        <div class="md:w-1/2">
+          <h2 class="text-2xl font-bold text-primary">Our Mission is Helping Millions of Organization Grow Better</h2>
+          <p id="blackpgf" class="mt-4 text-muted-foreground">Navigate the World of Finance with Confidence and Convenience Seamless Solution for Modern Money Management</p>
+          <a href="#" id="btn" class="mt-6 inline-block bg-secondary text-secondary-foreground hover:bg-secondary/80 py-2 px-4 rounded-lg">Learn More</a>
+        </div>
+        <div id="box2img"class="md:w-1/2 mt-6 md:mt-0">
+          <img  aria-hidden="true" alt="business meeting"src="box2.png" class="rounded-lg shadow-lg" />
+        </div>
+      </div>
+      <div class="flex flex-col md:flex-row bg-card rounded-lg shadow-lg overflow-hidden">
+        <img  id="imgs" class="w-full md:w-1/2 object-cover"  src="box1.png"  alt="Office interior"  />
+        <div class="p-6 flex flex-col justify-between">
+          <h2 class="text-2xl font-bold text-foreground">Our Mission is Helping Millions of Organization Grow Better</h2>
+          <p id="blackpgf" class="mt-2 text-muted-foreground">
+            Navigate the World of Finance with Confidence and Convenience Seamless Solution for Modern Money Management
+          </p>
+          <a id="mybtn" href="#"  class="mt-4 inline-block bg-primary text-primary-foreground py-2 px-4 rounded-lg hover:bg-primary/80">
+            Learn More
+          </a>
+        </div>
+      </div>
+</section>
+<section>
+  <div id="CustomerFeedback" class="bg-background p-8 text-center"><br>
+    <h2 id="our" class="text-3xl font-bold text-foreground">Customer Feedback</h2><br>
+    <p id="teem" class="mt-4 text-muted-foreground">Share your experience with us! Your feedback helps us refine our fin tech<br> solutions to better serve your financial needs.</p>
+  <br>
+    <div class="mt-8 flex justify-center space-x-4">
+      <div class="p1size"><img id="imghov1" class="w-16 h-16 rounded-full border-2 border-foreground" src="p3.png" alt="Customer 1" /></div>
+      <img id="imghov2" class="w-16 h-16 rounded-full border-2 border-foreground" src="p2.png" alt="Customer 2" />
+      <img id="imghov3" class="w-16 h-16 rounded-full border-2 border-foreground ring-2 ring-primary" src="p1.png" alt="Customer 3" />
+      <img id="imghov4" class="w-16 h-16 rounded-full border-2 border-foreground" src="p4.png" alt="Customer 4" />
+      <img id="imghov5" class="w-16 h-16 rounded-full border-2 border-foreground" src="p5.png" alt="Customer 5" />
+    </div>
+  <br>
+    <blockquote id="teem" class="mt-8 text-lg italic text-muted-foreground">
+      "I've been using this fintech platform for a while now, and I’m incredibly impressed. It’s user<br>-friendly, secure, and has revolutionized how I manage my finances. Highly recommend!"
+    </blockquote>
+    <cite class="mt-4 block text-primary">Monica</cite>
+  
+    <div class="mt-6 flex justify-center">
+      <button class="bg-secondary text-secondary-foreground hover:bg-secondary/80 p-2 rounded-full">◀</button>
+      <button class="bg-secondary text-secondary-foreground hover:bg-secondary/80 p-2 rounded-full">▶</button>
+    </div>
+  </div>
+  </section>
+  <section>
+    <div class="content">
+      <br></br>
+      <h2 id="ceoheadingtext">Meet Our Team</h2>
+      <br>
+      <p id="simpletext">Navigate the World of Finance with Confidence and Convenience Seamless Solution for Modern Money Management</p>
+      </div>
+      <div class="main">
+        <div class="ceobox"><img src="ceoimg.png"></div>
+        <div class="sidebox">
+        <div><img src="img1.png"></div>
+        <div><img src="img2.png"></div>
+        <div><img src="img3.png"></div>
+        <div class="sidebox2">
+          <div><img src="img4.png"></div>
+          <div><img src="img5.png"></div>
+          <div><img src="img6.png"></div>
+          </div>
+        </div>
+    </div>
+    </section>
+    <section>
+      <div>
+        <h2 id="ceoheadingtext">Company Growth & Infrastructure <br>Updates</h2><br>
+      </div>
+      <div class="boxholder">
+        <div><img src="ch1.png"></div>
+        <div><img src="ch2.png"></div>
+        <div><img src="ch3.png"></div>
+      </div>
+<div class="boxholder2">
+        <div><img src="cch1.png" width="400" height="400"></div>
+        <div><img src="cch2.png"  width="400" height="400"></div>
+    </div>
+      </section>
+      <section>
+        <div class="flex flex-col md:flex-row p-6 bg-background">
+          <div class="md:w-1/2 mb-6">
+            <h2 class="text-3xl font-bold text-primary">Frequently Asked Questions</h2><br>
+            <p id="blackpgf" class="mt-4 text-muted-foreground">Navigate the World of Finance with Confidence and <br> Convenience Seamless Solution for Modern Money<br> Management</p>
+            <a href="#" id="button1" class="mt-4 inline-block bg-accent text-accent-foreground py-2 px-4 rounded-lg hover:bg-accent/80">Read all FAQs</a>
+          </div>
+          <div class="md:w-1/2 space-y-4">
+            <div class="border border-border rounded-lg p-4">
+              <label class="block text-muted-foreground">What cloud platforms do you specialize in?</label>
+              <select class="w-full border border-border rounded-lg p-2">
+                <option>Select an option</option>
+                <option>Resources</option>
+                <option>our services</option>
+                <option>Select an option</option>
+                <option>Select an option</option>
+              </select>
+            </div>
+            <div class="border border-border rounded-lg p-4">
+              <label class="block text-muted-foreground">What cloud platforms do you specialize in?</label>
+              <select class="w-full border border-border rounded-lg p-2">
+                <option>Select an option</option>
+                <option>Select an option</option>
+                <option>Select an option</option>
+                <option>Select an option</option>
+              </select>
+            </div>
+            <div class="border border-border rounded-lg p-4">
+              <label class="block text-muted-foreground">What cloud platforms do you specialize in?</label>
+              <select class="w-full border border-border rounded-lg p-2">
+                <option>Select an option</option>
+                <option>Select an option</option>
+                <option>Select an option</option>
+                <option>Select an option</option>
+                <option>Select an option</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section>
+        <div class="flex flex-col items-center space-y-4 p-6 bg-background">
+          <h2 class="text-2xl font-bold text-primary">Stay connected to get updates about new properties</h2>
+          <form id="form" action="https://api.web3forms.com/submit" method="POST">
+          <div class="flex items-center border rounded-lg overflow-hidden">
+            <input type="hidden" name="access_key" value="61dd8065-cceb-4002-8fa2-bb347bd76de5">
+            <input required id="inputsmail" type="email" name="email" placeholder="Enter Email here"  class="p-2 border-none focus:outline-none" />
+            <button class="bg-primary text-primary-foreground p-2 rounded-full" id="Butons">
+              <img aria-hidden="true" width="50" height="50" alt="send-icon" src="Frame 1261155052.png" />
+            </button>
+          </div>
+          </form>
+        </div>
+      </section>
+      <section>
+        <footer id="footer" class="bg-background text-foreground p-8">
+          <div class="flex justify-between">
+            <div class="flex flex-col">
+              <h1 id="logo" class="text-2xl font-bold text-primary">LOGO</h1>
+              <br>
+              <p id="boldpgrf" class="text-muted-foreground">Get the latest on our growth<br> and developments.</p><br></br>
+              <div class="flex space-x-4 mt-4">
+                <div class="boxholder">
+                  <a href="#header"><div><img src="icons8-facebook-48.png"></div></a>
+                  <a href="#about us"><div><img src="icons8-instagram-48.png"></div></a>
+                  <a href="#ceoheadingtext"><div><img src="icons8-youtube-48.png"></div></a>
+                  <a href="#CustomerFeedback"><div><img src="icons8-in-48.png"></div></a>
+                </div>
+              </div>
+            </div>
+        
+            <div class="flex flex-col">
+              <h2 id="texthd" class="text-lg font-semibold text-primary">Information</h2>
+              <br>
+              <ul class="list-disc list-inside">
+                <li><a id="prgf" href="#" class="text-muted-foreground">Our Story</a></li>
+                <li><a id="prgf" href="#" class="text-muted-foreground">Awards</a></li>
+                <li><a id="prgf" href="#" class="text-muted-foreground">Our Team</a></li>
+                <li><a id="prgf" href="#" class="text-muted-foreground">Career</a></li>
+              </ul>
+           
+            </div>
+        
+            <div class="flex flex-col">
+              <h2 id="texthd" class="text-lg font-semibold text-primary">Company</h2><br>
+              <ul class="list-disc list-inside">
+                <li><a id="prgf" href="#" class="text-muted-foreground">Our Services</a></li>
+                <li><a id="prgf" href="#" class="text-muted-foreground">Clients</a></li>
+                <li><a id="prgf" href="#" class="text-muted-foreground">Contact</a></li>
+              </ul>
+            </div>
+        
+            <div class="flex flex-col">
+              <h2 id="texthd" class="text-lg font-semibold text-primary">Resources</h2><br>
+           
+              <ul class="list-disc list-inside">
+                <li><a id="prgf" href="#" class="text-muted-foreground">Privacy Policy</a></li>
+                <li><a id="prgf" href="#" class="text-muted-foreground">Watch and Demo</a></li>
+                <li><a id="prgf" href="#" class="text-muted-foreground">Customer</a></li>
+                <li><a id="prgf" href="#" class="text-muted-foreground">API</a></li>
+              </ul>
+            </div>
+        
+            <div class="flex flex-col">
+              <h2 id="texthd" class="text-lg font-semibold text-primary">Feature</h2><br>
+              <ul  class="list-disc list-inside">
+                <li><a id="prgf" href="#" class="text-muted-foreground">Business Marketing</a></li>
+                <li><a id="prgf" href="#" class="text-muted-foreground">Live Chat</a></li>
+                <li><a id="prgf" href="#" class="text-muted-foreground">Support</a></li>
+              </ul>
+            </div>
+          </div>
+        
+          <div class="mt-8 flex justify-between">
+      
+          </div>
+          <div class="cpniconbox">
+            <div id="callsection"><div id="c1"><img src="call.png" height="20" width="25px"></div><p id="textss" class="text-muted-foreground"> 000-111-222</p></div>
+            <div id="callsection"><div id="c1"><img src="email.png" height="20" width="25px" ></div><p id="textss" class="text-muted-foreground">Example.gmail.com</p></div>
+            <div id="callsection"><div id="c1"><img src="location.png" height="20" width="25px"></div><p id="textss" class="text-muted-foreground">Danyour Gilgit</p></div>
+ 
+          </div>
+        </footer>
+      </section>
+  </body>
+</html>
